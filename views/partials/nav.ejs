@@ -1,0 +1,109 @@
+<style>
+  /* Reset some default styles */
+  body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background-color: #f8f9fa;
+      color: #333;
+      margin: 0;
+      padding: 0;
+  }
+
+  .container {
+      max-width: 1200px;
+      margin: 20px auto; /* Adjusted margin for better centering */
+      padding: 20px;
+  }
+h3{
+  color: white;
+}
+  .nav-tabs {
+      background-color: #21899b;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between; /* Spacing between nav items */
+      align-items: center; /* Center items vertically */
+  }
+
+  .nav-item {
+      list-style: none; /* Remove default list styles */
+  }
+
+  .nav-link {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 15px;
+  }
+  .nav-link:hover{
+    color: white;
+    background-color: #008fb3;
+  }
+  .dropdown-menu {
+      background-color: #0084ff;
+  }
+
+  .dropdown-item {
+      color: #fff;
+  }
+
+  /* Alert styling */
+  .alert {
+      margin-top: 20px;
+  }
+
+  .alert-danger {
+      color: #721c24;
+      background-color: #f8d7da;
+      border-color: #f5c6cb;
+      border-radius: 5px;
+      padding: 10px;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+      .nav-tabs {
+          flex-direction: column; /* Stack nav items vertically on small screens */
+          align-items: flex-start; /* Align items to the start */
+      }
+
+      .nav-item {
+          margin-bottom: 10px; /* Add space between nav items */
+      }
+  }
+</style>
+
+<% console.log('locals.user:', locals.user); %>
+<ul class="nav nav-tabs">
+  <h3><i>MY Blogify</i></h3>
+  <li class="nav-item">
+    <a class="nav-link" aria-current="page" href="#">Home</a>
+  </li>
+  <% if (locals.user) { %>
+    <li class="nav-item">
+      <a class="nav-link" href="/blog/add-new">Add Blog</a>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Ayush</a>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
+      </ul>
+    </li>
+  <% } else { %>
+    <li class="nav-item">
+      <a class="nav-link" aria-current="page" href="/user/signup">CREATE ACCOUNT</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" aria-current="page" href="/user/signin">SIGN IN</a>
+    </li>
+  <% } %>
+</ul>
+
+<% if(locals.error){ %>
+  <div class="container mt-4">
+    <div class="alert alert-danger" role="alert">
+      <%= locals.error %>
+    </div>
+  </div>
+<% } %>
